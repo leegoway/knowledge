@@ -37,6 +37,8 @@ date(), strtotime
 ### 性能测试
 
 ## Mysql
+### 数据类型
+### 引擎
 ### 进程
 Mysql是单进程多线程的软件。线程包括：主线程、Log线程、Insert Buff线程、4个IO读线程、4个IO写线程、错误监控线程、锁监控线程等。
 
@@ -75,13 +77,23 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 - slow_log
   slow_query_log=on, long_query_times=10s;来设置慢日志。慢日志分析工具是mysqldumpslow，传递参数筛选日志（mysqldumpslow -s t -t 10 logfile）。
 
-### 锁算法
-### 读写分离
+### 锁
+- 锁类型
+>  innodb提供行级共享锁与排他锁，意向共享锁和意向排它锁。意向锁是在表上建立的，对表级的操作有影响。
+>  myisam提供表级锁 
+- 一致性的非锁定读
+- 锁算法
+> Gap Lock
+> Record Lock
+> Next Key Lock
+  
+- 锁算法
+
 ### 新特性
+### 主从同步
+### 读写分离
 ### 分库分区表
 ### 中间件
-### 引擎
-### 数据类型
 ### 分布式事务
 
 ## Redis 
