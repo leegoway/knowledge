@@ -1,9 +1,35 @@
-#必备知识
+# 必备知识
 
 ## PHP
 
 ### 数据类型
+
+#### 布尔
+bool  值有true和false，所有的零值都和false相等（使用==）。判断符号“===”还会区别类型。
+#### 字符串
+string
+#### 整数
+int
+#### 浮点数
+float double 
+#### 数组
+array []
+#### 对象
+stdobject
+#### 其他
+mixed resource null closure 等
+
 ### 数组函数 字符串函数 日期类函数
+
+#### 字符串函数
+strlen, strpos, substr, explode, implode, mb_strlen, mb_strpos, mb_substr, strstr, strrchr, strtolower, strtoupper, trim
+#### 数组函数
+count, in_array, array_keys, array_values, array_diff, array_merge, array_push, array_pop, array_shift, array_unshift, array_map, array_filter
+#### 日期类函数
+date(), strtotime
+
+### 进制转换
+二进制是bin，八进制是oct，十进制是dec，十六进制是hex。通用方法base_convert()
 ### Cookie&Session共享
 ### PHP-FPM
 ### PHP配置常用
