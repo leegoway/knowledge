@@ -86,10 +86,11 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 > Gap Lock
 > Record Lock
 > Next Key Lock
-  
-- 锁算法
 
 ### 新特性
+- Json
+- Geo
+
 ### 主从同步
 ### 读写分离
 ### 分库分区表
