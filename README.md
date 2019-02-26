@@ -38,7 +38,29 @@ date(), strtotime
 
 ## Mysql
 ### 数据类型
+- enum 枚举
+- 整数
+> tinyint 1个字节整数  smallint 2个字节证书 mediumint 3个字节整数 int 4字节整数 bigint 8字节整数
+
+- 字符串
+> varchar与char 变长与定长，注意长度是指字符的长度，一个汉字是一个字符，一个英文字母也是一个字符，一个数字也是一个字符，并不是字节数。varchar需要单独的一个字节存储结束符。
+
+- 时间类型
+> timestamp datetime date time 。 timestamp是时间戳类型，占4个字节，跟时区有关的，存储时内部存的都是0时区的值。datetime占8个字节，最大值‘9999-99-99 99:99:99’（值已经不合法）。
+
+- 二进制
+> binary的好处是不存在大小写以及字符编码的问题，对比的时候按照字节对比。
+
+- 文本
+> text是文本类型，用于存储内容较多的字段。
+
 ### 引擎
+- myisam
+> 不支持事务；不支持外键；支持表极锁；全文搜索；B+树存储；主键和辅助索引结构相同；表结构frm，数据MYD，索引MYI存储。
+- ndb
+- innodb
+> 支持事务；行级锁；支持外键；共享表空间；优化的B+树存储；聚簇索引；OLTP，全文搜索。
+
 ### 进程
 Mysql是单进程多线程的软件。线程包括：主线程、Log线程、Insert Buff线程、4个IO读线程、4个IO写线程、错误监控线程、锁监控线程等。
 
@@ -64,6 +86,13 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 - 主键索引&辅助索引
 - 在选择项多的列上加索引
 - 索引的类型（主键、辅助、联合索引、空间索引等）
+- 高性能索引
+  1. 多列的联合索引要注意顺序
+  2. 多使用覆盖索引
+  3. 最左前缀原则
+  4. 选择高选择的列
+  5. 排序的字段也可以考虑添加索引
+
 
 ### 事务
 - ACID
@@ -92,10 +121,28 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 - Geo
 
 ### 主从同步
+1. 开启binlog，同时设置server_id;
+2. grant replication slave on db.table to 'username'@'host' identified by 'password';
+3. change master to master_host='', master_user='', master_password='', master_log_file='', master_log_pos=''
+4. start slave
+5. show slave status 会看到slave_io和slave_sql线程正在running方可
+
 ### 读写分离
+- 这个是应用层来实现的，读写分离要注意的是主从同步延迟，通过show slave status有个字段slave_balabala_seconds显示延迟时间。
+- Yii配置
+
 ### 分库分区表
+- 分区range\list\hash\key
+- 分库的时机，分表的时机
+
 ### 中间件
+- Mycat
+- Kingshard
+- Atlas
+
 ### 分布式事务
+- XA
+
 
 ## Redis 
 
@@ -108,13 +155,56 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 ### 集群
 ### 缓存更新顺序
 
-## HTTP
+## HTTP权威指南
 
 ### URL
+< schema>//:user:pass@host:port/path?querystring#fragement
+url_encode
+
 ### 报文
+#### 起始行
+- 请求方法  路径 
+- HTTP版本  响应code 响应短语
+
+#### 首部
+> 通用首部
+Connection Date 
+
+> 请求首部
+Accept Accept-encoding Accept-language
+Host Referer Authorization Cookie
+if-modified-since   Cache-Control Pragma
+
+> 响应首部
+Content-Type Content-Length Date Server
+Set-Cookie Location
+ETag Expires Last-Modified
+
+#### 主体
+
+
+### 请求方法与返回码
+#### 请求方法
+GET POST DELETE PUT PATCH OPTIONS HEAD
+#### 返回码
+200  201 ； 301  302  304； 400  401  404 ； 500  502  504 
+
 ### TCP/IP
+- TCP 20字节报文
+- IP 20字节报文
+- 三次握手、四次挥手、慢启动 
+
+### 缓存
+> if-modified-since  HTTP_CODE = 304
+> cache-control: max-age  相对时间长度
+> expires: 日期   过期的绝对日期时间
+
+
+### HTTPS
+
 
 ## THRIFT
+
 
 ## 队列
 ### Kafka
