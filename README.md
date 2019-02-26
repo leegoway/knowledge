@@ -143,7 +143,6 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 ### 分布式事务
 - XA
 
-
 ## Redis 
 
 ### 基础数据结构
@@ -181,7 +180,7 @@ Set-Cookie Location
 ETag Expires Last-Modified
 
 #### 主体
-
+根据content-type的不同，可以传不同类型的参数，常用的有application/json, application/x-www-form-url-encoded, multipart/form-data, text/plain等
 
 ### 请求方法与返回码
 #### 请求方法
@@ -195,16 +194,22 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 - 三次握手、四次挥手、慢启动 
 
 ### 缓存
-> if-modified-since  last_modified HTTP_CODE = 304
+> if-modified-since last_modified HTTP_CODE = 304
 > cache-control: max-age  相对时间长度
 > expires: 日期   过期的绝对日期时间
-> 优先级：cache-control, expire, etag > if-modified-since
+> 优先级：cache-control > expire > etag > if-modified-since
 
 ### HTTPS
 - TLS SSL
 - 证书
 
-## THRIFT
+## Thrift
+- 分层: Transport, Protocol, Processor, Service
+- thrift文件编写
+- Go使用thrift
+- PHP使用thrift
+
+## Rest架构风格
 
 
 ## 队列
@@ -255,5 +260,9 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 ## 大数据
 ### ES
 ### DRUID
+### TiDB
 
 ## 数据结构与算法
+
+## VueJS
+
