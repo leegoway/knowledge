@@ -195,13 +195,14 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 - 三次握手、四次挥手、慢启动 
 
 ### 缓存
-> if-modified-since  HTTP_CODE = 304
+> if-modified-since  last_modified HTTP_CODE = 304
 > cache-control: max-age  相对时间长度
 > expires: 日期   过期的绝对日期时间
-
+> 优先级：cache-control, expire, etag > if-modified-since
 
 ### HTTPS
-
+- TLS SSL
+- 证书
 
 ## THRIFT
 
@@ -214,7 +215,28 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 
 ## 设计模式
 ### 模式原则
+1. 单一职责
+2. 里式替换
+3. 迪米特法则
+4. 依赖倒置
+5. 接口隔离
+6. 开闭原则
+
 ### 模式列表  
+1. 简单工厂模式
+2. 单例模式
+3. 模板方法
+4. 策略模式
+5. 职责链模式
+6. 装饰者模式
+7. 观察者模式
+8. 状态模式
+9. 命令模式
+10. 代理模式
+11. 适配器模式
+12. 组合模式
+13. 迭代器模式
+14. 门面模式
 
 ## Nginx
 ### 常见配置
