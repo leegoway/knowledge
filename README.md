@@ -204,8 +204,11 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 - TLS SSL
 - 证书
 
-## THRIFT
-
+## Thrift
+- 分层: Transport, Protocol, Processor, Service
+- thrift文件编写
+- Go使用thrift
+- PHP使用thrift
 
 ## 队列
 ### Kafka
@@ -255,5 +258,9 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 ## 大数据
 ### ES
 ### DRUID
+### TiDB
 
 ## 数据结构与算法
+
+## VueJS
+
