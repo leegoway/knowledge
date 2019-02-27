@@ -209,9 +209,6 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 - Go使用thrift
 - PHP使用thrift
 
-## Rest架构风格
-
-
 ## 队列
 ### Kafka
 ### RabbitMQ
