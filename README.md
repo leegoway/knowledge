@@ -146,13 +146,54 @@ Mysql内存占用主要分3块，主缓冲区、日志缓冲区和其他缓冲�
 ## Redis 
 
 ### 基础数据结构
+- 动态字符串sdshdr
+
+- 链表 linkedlist和listnode
+
+- 字典表 dict dictht dictentry
+
+- 整数集合 intset
+
+- 压缩列表 ziplist
+
+- 跳跃表 skiplist
+
+
 ### RedisObject
+- 内部有type encoding ptr lru refcount 等字段。
+
 ### RedisServer/Db
-### LUR
-### SYNC/PSYNC/PSYNC2
+- RedisServer内部有dbnum, redisdb\*，saveparams, 等
+- RedisDb内部有 dict\*， expires\*等
+
+### LRU
+- 过期键的判定就是扫描expires的dict，找到相对lru比较小的，进行过期删除。redis使用了惰性删除和定期删除。访问的时候，先判断是否过期；定期serverCron的时候删除过期的键。
+
 ### 存储rdb/aos
+- rdb是二进制方式存储数据，首先记录redis的版本等信息，接着是db的信息，接着是redisDb结构体里的dict内数据。
+- AOF是日志方式存储数据，会记录redis的命令历史；重写AOF文件时是遍历redisDb的dict结构体，为数据生成命令并保存到aof文件中。
+- 启用并存在AOF，优先从AOF启动redis，否则从rdb启动。
+- SAVE命令会阻塞请求，BGSAVE会fork进程来处理保存数据，同时采用COW技术。
+
+### 复制SYNC
+- slave of host port；SYNC\PSYNC\PSYNC2
+- PSYNC在2.8版本启用，PSYNC2在4.0版本启用。 
+- PSYNC主要用来解决网络抖动时，主从重新同步的问题，主redis增加了同步队列replication_backlog，从增加了master的ID和偏移量。
+- PSYNC2是在集群的背景下解决主从切换时，其他从redis从新主redis重新同步数据的问题，从存储了当前master的ID和前一个master的ID以及偏移量。
+
 ### 集群
+- 16384个slot
+
 ### 缓存更新顺序
+
+### Redis应用场景
+- 缓存（一致性hash）
+- 排行榜（zset）
+- bitmap
+- GEO
+- 布隆过滤
+- 队列（延迟队列:Job状态，消费队列，推拉）
+- 分布式锁
 
 ## HTTP权威指南
 
@@ -258,8 +299,16 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 ### ES
 ### DRUID
 ### TiDB
+### 超出内存的求出现次数最多的n条记录？
 
 ## 数据结构与算法
+### 二叉平衡树
+- 前序遍历、中序遍历、后序遍历
+- 遍历算法
+### B+树
+### Trie前缀树
+### Raft算法
+### 动态规划
 
 ## VueJS
 
