@@ -252,7 +252,21 @@ GET POST DELETE PUT PATCH OPTIONS HEAD
 
 ## 队列
 ### Kafka
+
 ### RabbitMQ
+#### 类型
+- basic consume
+- multi clients
+- fanout
+- direct
+- topic
+#### 插件
+- shovel
+#### 集群
+- 集群
+- 持久化
+- 
+
 ### 延迟队列
 ### 普通队列
 
